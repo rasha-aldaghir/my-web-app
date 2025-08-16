@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<br>
+<style>
+h1{
+    color: #ffffff;
+    font-size: 50px;
+}
+span{
+    font-size: 20px;
+    color: rgb(190, 190, 190);
+}
+p {
+  text-align: left;
+  font-size: 30px;
+  margin-top: -20px;
+  font-weight: 500;
+  color: #000000;
+}
+h3{
+    color: #000000;
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#promo{
+    display: none;
+}
+
+
+.col{
+    display: flex;
+    align-items: center;
+    
+}
+
+body{
+    font: 16px/1.4 sans-serif; letter-spacing: 0.12em;
+    min-height: 150vh;
+    padding: 1em 2em 2em 1em;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    color: hsla(0, 0%, 100%, 0.85); 
+    background-color: #170d24;
+    background-image:
+        radial-gradient(ellipse at 10% 90%, #1f0e74 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 90%, #4a2082 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 10%, #3468ec 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 10%, #2d244f 0%, transparent 55%);
+}
+
+.section {
+    padding: 10px 20px 20px 10px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    margin: 20px 20px 20px 20px
+}
+
+@media (max-width: 527px) {
+  .wrapper {
+    grid-template-columns: auto;
+    align-items: center;
+  }
+  .image-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .col p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+</style>
+</head>
+<body>
+<h1>Product 1 <span>Information</span></h1>
+<div class="section">
+    <img src="icon.png" alt="Test">
+    <p id="date"></p>
+    <p id="demo"></p>
+    <h3 id="status"></h3>
+</div>
+
+<div class="section" id="cross-sell">
+    <img src="icon.png" alt="Test">
+    <h3 id="ad">More items like this</h3>
+    <h3 id="price">$5.99</h3>
+</div>
+
+<div class="section" id="promo">
+    <div class="wrapper">
+        <div class="image-wrapper">
+            <img src="Qr-code-ver-10.svg.png" alt="Test">
+        </div>
+        <div class="col">
+            <p>Enjoy 10% off your next purchase!</p>
+        </div>
+
+    </div>
+    
+</div>
+
+<script>
+// Set the date we're counting down to
+var expiryDate = new Date("Aug 5, 2028 15:37:25");
+var countDownDate = expiryDate.getTime();
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+  var status = "Good to use!"
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("date").innerHTML = "Expiration date: " + expiryDate.toLocaleDateString();
+  document.getElementById("demo").innerHTML = days + " Days, " + hours + " Hours ";
+  document.getElementById("status").innerHTML = status;
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED.";
+    document.getElementById("demo").style.color = 'red'
+    document.getElementById("status").innerHTML = "Reasons for not using expired product: 1) Lorem ipsum 2) Lorem ipsum 3) Lorem ipsun";
+    document.getElementById("date").innerHTML = "";
+    document.getElementById("promo").style.display = 'block'; 
+    document.getElementById("cross-sell").style.display = 'none'; 
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
